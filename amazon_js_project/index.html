@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amazon Clone</title>
+    <meta name="description" content="Amazon home page clone built with HTML, CSS and JavaScript">
+
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header id="top">
+
+    <!-- Navbar -->
+    <nav class="navbar" aria-label="Main navigation">
+
+        <!-- Logo -->
+        <div class="nav-logo border">
+            <div class="logo" role="img" aria-label="Amazon"></div>
+        </div>
+
+        <!-- Address -->
+        <div class="nav-address border" id="nav-address">
+            <p class="add-first">Deliver to</p>
+
+            <div class="add-icon">
+                <i class="fa-solid fa-location-dot"></i>
+                <p class="add-sec" id="deliver-text">India</p>
+            </div>
+
+            <!-- Pincode popover (JS toggles this) -->
+            <div class="pin-popover" id="pin-popover" hidden>
+                <h4>Choose your location</h4>
+                <p>Enter a 6-digit pincode to see delivery options</p>
+                <div class="pin-row">
+                    <input type="text" id="pin-input" maxlength="6" inputmode="numeric" placeholder="e.g. 380001">
+                    <button id="pin-apply">Apply</button>
+                </div>
+                <p class="pin-error" id="pin-error"></p>
+            </div>
+        </div>
+
+        <!-- Search -->
+        <div class="nav-search">
+            <select class="search-select" aria-label="Search category">
+                <option>All</option>
+            </select>
+
+            <input type="text" placeholder="Search Amazon" class="search-input" id="search-input" autocomplete="off" aria-label="Search Amazon">
+
+            <button type="button" class="search-icon" id="search-btn" aria-label="Search">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+
+            <!-- Suggestions dropdown (JS fills this) -->
+            <ul class="suggestions" id="suggestions" hidden></ul>
+        </div>
+
+        <!-- Sign In -->
+        <div class="nav-signin border" id="nav-signin" role="button" tabindex="0">
+            <p><span id="hello-text">Hello, sign in</span></p>
+            <p class="nav-second">Account &amp; Lists</p>
+        </div>
+
+        <!-- Returns -->
+        <div class="nav-returns border">
+            <p><span>Returns</span></p>
+            <p class="nav-second">&amp; Orders</p>
+        </div>
+
+        <!-- Cart -->
+        <div class="nav-cart border" id="nav-cart" role="button" tabindex="0" aria-label="Open cart">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <b class="cart-count" id="cart-count">0</b>
+            Cart
+        </div>
+
+    </nav>
+</header>
+
+<!-- Panel -->
+<nav class="panel" aria-label="Departments">
+
+    <button type="button" class="panel-all border" id="menu-btn" aria-label="Open all categories menu">
+        <i class="fa-solid fa-bars"></i>
+        All
+    </button>
+
+    <div class="panel-ops">
+        <a href="#">Today's Deals</a>
+        <a href="#">Customer Service</a>
+        <a href="#">Registry</a>
+        <a href="#">Gift Cards</a>
+        <a href="#">Sell</a>
+    </div>
+
+    <div class="panel-deals">
+        Shop deals in Electronics
+    </div>
+
+</nav>
+
+<main>
+<section class="hero-section" id="hero" aria-label="Featured deals">
+    <div class="slide slide-img active" role="img" aria-label="Prime Day deals: fashion and beauty starting at Rs. 299"></div>
+
+    <div class="slide slide-2">
+        <div class="slide-text">
+            <h2>Big savings on Electronics</h2>
+            <p>Headphones, appliances &amp; more | Up to 75% off</p>
+        </div>
+    </div>
+
+    <div class="slide slide-3">
+        <div class="slide-text">
+            <h2>Home &amp; Kitchen essentials</h2>
+            <p>Starting &#8377;49 | Fresh deals every day</p>
+        </div>
+    </div>
+
+    <button class="hero-arrow prev" id="hero-prev" aria-label="Previous slide">
+        <i class="fa-solid fa-chevron-left"></i>
+    </button>
+    <button class="hero-arrow next" id="hero-next" aria-label="Next slide">
+        <i class="fa-solid fa-chevron-right"></i>
+    </button>
+
+    <div class="hero-dots" id="hero-dots"></div>
+</section>
+    <p class="no-results" id="no-results" hidden></p>
+
+<noscript><p class="no-results">Please turn on JavaScript to see the products.</p></noscript>
+
+<!-- Deal boxes are created by script.js from the DEALS array -->
+<section class="shop-section" id="deals" aria-label="Today's deals"></section>
+
+<!-- Live products fetched from fakestoreapi.com -->
+<section class="products-section" id="trending" aria-labelledby="trending-title">
+    <div class="section-head">
+        <h2 id="trending-title">Trending products</h2>
+        <p class="products-status" id="products-status" role="status"></p>
+        <button type="button" class="retry-btn" id="products-retry" hidden>Retry</button>
+    </div>
+    <div class="shop-section" id="products-grid"></div>
+</section>
+</main>
+
+<footer>
+    <a href="#top" class="foot-panel1">
+        Back to top
+    </a>
+
+    
+    
+
+    <div class="foot-panel2">
+
+    <div class="foot-col">
+        <h3>Get to Know Us</h3>
+        <ul>
+            <li><a href="#">About Amazon</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Press Releases</a></li>
+            <li><a href="#">Amazon Science</a></li>
+        </ul>
+    </div>
+
+    <div class="foot-col">
+        <h3>Connect with Us</h3>
+        <ul>
+            <li><a href="#">Facebook</a></li>
+            <li><a href="#">Twitter</a></li>
+            <li><a href="#">Instagram</a></li>
+        </ul>
+    </div>
+
+    <div class="foot-col">
+        <h3>Make Money with Us</h3>
+        <ul>
+            <li><a href="#">Sell on Amazon</a></li>
+            <li><a href="#">Sell under Amazon Accelerator</a></li>
+            <li><a href="#">Protect and Build Your Brand</a></li>
+            <li><a href="#">Amazon Global Selling</a></li>
+        </ul>
+    </div>
+
+    <div class="foot-col">
+        <h3>Let Us Help You</h3>
+        <ul>
+            <li><a href="#">Your Account</a></li>
+            <li><a href="#">Returns Centre</a></li>
+            <li><a href="#">100% Purchase Protection</a></li>
+            <li><a href="#">Help</a></li>
+        </ul>
+    </div>
+
+</div>
+
+<div class="foot-panel3">
+    <div class="logo" role="img" aria-label="Amazon"></div>
+</div>
+
+<div class="foot-panel4">
+
+    <nav class="pages" aria-label="Amazon services">
+        <a href="#">Amazon Music</a>
+        <a href="#">Amazon Ads</a>
+        <a href="#">Amazon Business</a>
+        <a href="#">Amazon Global</a>
+        <a href="#">Prime Video</a>
+        <a href="#">IMDbPro</a>
+        <a href="#">Amazon Web Services</a>
+        <a href="#">Kindle</a>
+        <a href="#">Amazon Pay</a>
+    </nav>
+
+    <div class="copyright">
+        © 1996-2026, Amazon.com, Inc. or its affiliates
+    </div>
+
+</div>
+</footer>
+
+<!-- Cart drawer -->
+<div class="overlay" id="overlay" hidden></div>
+<aside class="cart-drawer" id="cart-drawer" aria-label="Shopping cart">
+    <div class="cart-head">
+        <h2>Shopping Cart</h2>
+        <button id="cart-close" aria-label="Close cart"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="cart-items" id="cart-items"></div>
+    <div class="cart-foot">
+        <div>
+            <p>Total items: <b id="cart-total">0</b></p>
+            <p class="cart-subtotal">Subtotal: <b id="cart-subtotal">&#8377;0</b></p>
+        </div>
+        <button id="cart-clear">Clear cart</button>
+    </div>
+</aside>
+
+<!-- "All" side menu -->
+<aside class="side-menu" id="side-menu" aria-label="Menu">
+    <div class="side-head">
+        <i class="fa-solid fa-circle-user"></i>
+        <b id="side-hello">Hello, sign in</b>
+        <button type="button" id="menu-close" aria-label="Close menu"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="side-body">
+        <h3>Shop by category</h3>
+        <ul id="menu-categories"></ul>
+        <h3>Your account</h3>
+        <ul>
+            <li><button type="button" id="menu-cart">Your cart</button></li>
+            <li><button type="button" id="menu-signin">Sign in</button></li>
+            <li><button type="button" id="menu-signout" hidden>Sign out</button></li>
+        </ul>
+    </div>
+</aside>
+
+<!-- Sign in / create account modal -->
+<div class="modal" id="signin-modal" role="dialog" aria-modal="true" aria-labelledby="auth-title">
+    <button type="button" class="modal-close" id="signin-close" aria-label="Close sign in"><i class="fa-solid fa-xmark"></i></button>
+    <h2 id="auth-title">Sign in</h2>
+
+    <form id="signin-form" novalidate>
+        <div class="field" id="name-group" hidden>
+            <label for="name-input">Your name</label>
+            <input type="text" id="name-input" autocomplete="name" aria-invalid="false">
+            <p class="field-error" id="name-error" role="alert"></p>
+        </div>
+
+        <div class="field">
+            <label for="email-input">Email</label>
+            <input type="email" id="email-input" autocomplete="email" aria-invalid="false">
+            <p class="field-error" id="email-error" role="alert"></p>
+        </div>
+
+        <div class="field">
+            <label for="password-input">Password</label>
+            <input type="password" id="password-input" autocomplete="current-password" aria-invalid="false">
+            <p class="field-hint" id="password-hint" hidden>At least 8 characters, with a letter and a number</p>
+            <p class="field-error" id="password-error" role="alert"></p>
+        </div>
+
+        <label class="show-pass"><input type="checkbox" id="show-pass"> Show password</label>
+
+        <button type="submit" class="auth-submit" id="auth-submit">Sign in</button>
+    </form>
+
+    <p class="auth-note">Demo only: nothing is sent anywhere. Only your name and email are kept in this browser, never the password.</p>
+    <button type="button" class="auth-toggle" id="auth-toggle">New to Amazon? Create your account</button>
+</div>
+
+<!-- Toast + floating back-to-top -->
+<div class="toast" id="toast"></div>
+<button class="to-top" id="to-top" aria-label="Back to top">
+    <i class="fa-solid fa-arrow-up"></i>
+</button>
+
+<script src="script.js"></script>
+</body>
+</html>
